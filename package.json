@@ -1,0 +1,27 @@
+{
+  "name": "smart-farming-ai",
+  "version": "1.0.0",
+  "description": "Smart Farming AI Pakistan - AI-powered agricultural platform",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev:ml": "cd ml-service && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
+    "build": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "test": "cd server && npm test",
+    "test:ml": "cd ml-service && python -m pytest",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "smart-farming",
+    "agriculture",
+    "ai",
+    "pakistan"
+  ],
+  "license": "MIT"
+}
