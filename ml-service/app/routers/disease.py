@@ -27,7 +27,10 @@ async def predict_disease(image: UploadFile = File(...)):
 
     try:
         result = disease_service.detect_disease(file_bytes, image.content_type)
-        if result["confidence"] / 100 < CONFIDENCE_THRESHOLD:
+        confidence = result["confidence"]
+        if confidence > 1:
+            confidence = confidence / 100
+        if confidence < CONFIDENCE_THRESHOLD:
             return {
                 "status": "low_confidence",
                 "message": "The model is not confident enough to identify this disease reliably. Please upload a clearer image of the affected leaf.",

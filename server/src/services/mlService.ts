@@ -26,6 +26,15 @@ export class MlServiceError extends Error {
 function mapMlError(error: unknown): MlServiceError {
   if (error instanceof MlServiceError) return error;
   const axiosError = error as AxiosError<{ detail?: string }>;
+  const connectionCodes = ['ECONNABORTED', 'ETIMEDOUT', 'ECONNRESET', 'ECONNREFUSED', 'ENOTFOUND', 'ERR_NETWORK'];
+
+  if (connectionCodes.includes(axiosError.code || '')) {
+    return new MlServiceError(
+      'ML service is unreachable. Please ensure the Python ML service is running and the ML_SERVICE_URL points to http://127.0.0.1:8000 or http://localhost:8000.',
+      502,
+      'ML_SERVICE_UNAVAILABLE'
+    );
+  }
   if (axiosError.code === 'ECONNABORTED' || axiosError.code === 'ETIMEDOUT') {
     return new MlServiceError('ML service request timed out.', 504, 'ML_TIMEOUT');
   }
