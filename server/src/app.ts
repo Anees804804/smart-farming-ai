@@ -10,6 +10,7 @@ import assistantRoutes from './routes/assistantRoutes';
 import diseaseRoutes from './routes/diseaseRoutes';
 import mandiPricesRoutes from './routes/mandiPricesRoutes';
 import farmerRateRoutes from './routes/farmerRateRoutes';
+import newsRoutes from './routes/newsRoutes';
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/assistant', assistantRoutes);
 app.use('/api/disease', diseaseRoutes);
 app.use('/api/mandi-prices', mandiPricesRoutes);
 app.use('/api/farmer-rates', farmerRateRoutes);
+app.use('/api/news', newsRoutes);
 
 // 404 handler
 app.use((_req, res) => {

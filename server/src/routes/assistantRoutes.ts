@@ -1,10 +1,23 @@
 import { Router } from 'express';
+import multer from 'multer';
 import { body } from 'express-validator';
-import { chatHandler } from '../controllers/assistantController';
+import { chatHandler, transcribeHandler } from '../controllers/assistantController';
 import { validate } from '../middleware/validate';
 import { assistantLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
+const audioUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 },
+  fileFilter: (_req, file, callback) => {
+    const allowed = [
+      'audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/wave',
+      'audio/ogg', 'audio/webm', 'audio/flac', 'audio/mp4',
+      'audio/m4a', 'audio/x-m4a', 'audio/aac', 'audio/x-caf',
+    ];
+    callback(null, allowed.includes(file.mimetype));
+  },
+});
 
 router.use(assistantLimiter);
 
@@ -30,5 +43,20 @@ router.post(
   ]),
   chatHandler
 );
+
+router.post('/transcribe', (req, res, next) => {
+  audioUpload.single('audio')(req, res, (error) => {
+    if (error) {
+      const status =
+        error instanceof multer.MulterError && error.code === 'LIMIT_FILE_SIZE' ? 413 : 400;
+      res.status(status).json({
+        error: status === 413 ? 'Audio file is too large. Maximum size is 25MB.' : 'Invalid audio upload.',
+        code: status === 413 ? 'AUDIO_TOO_LARGE' : 'INVALID_AUDIO_UPLOAD',
+      });
+      return;
+    }
+    next();
+  });
+}, transcribeHandler);
 
 export default router;

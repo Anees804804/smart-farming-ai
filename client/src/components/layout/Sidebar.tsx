@@ -13,6 +13,7 @@ import {
   Leaf,
   MessageCircle,
   Map,
+  Newspaper,
   Info,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -25,6 +26,7 @@ const iconMap: Record<string, ReactNode> = {
   Leaf: <Leaf size={20} />,
   MessageCircle: <MessageCircle size={20} />,
   Map: <Map size={20} />,
+  Newspaper: <Newspaper size={20} />,
   Info: <Info size={20} />,
 };
 

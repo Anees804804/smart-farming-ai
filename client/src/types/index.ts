@@ -160,3 +160,17 @@ export interface ApiError {
   error: string;
   code?: string;
 }
+
+export interface NewsUpdateEntry {
+  title: string;
+  description: string;
+  province: string;
+  category: 'news' | 'scheme';
+  imageUrl?: string;
+  createdAt: string;
+}
+
+export interface NewsResponse {
+  status: string;
+  data: NewsUpdateEntry[];
+}

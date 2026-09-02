@@ -9,6 +9,7 @@
     "mandiPrices": "Mandi Ke Bhaao",
     "weedManagement": "Jari Booti Ka Intizam",
     "aiAssistant": "AI Assistant", "agricultureMap": "Zarai Naqsha",
+    "newsUpdates": "Zarai Khabrein Aur Updates",
     "about": "Humare Baray Mein"
   },
   "dashboard": {
@@ -43,7 +44,9 @@
     "weatherTitle": "Mausam Ki Maloomat",
     "weatherDesc": "Behtar kisaani ke faislon ke liye mausam ki maloomat istemal karein.",
     "mapTitle": "Pakistan Zarai Naqsha",
-    "mapDesc": "Zarai ilaqon aur maqam par mabni kisaani ki maloomat daryaft karein."
+    "mapDesc": "Zarai ilaqon aur maqam par mabni kisaani ki maloomat daryaft karein.",
+    "newsTitle": "Zarai Khabrein Aur Updates",
+    "newsDesc": "Apne soobay ke liye taza tareen zarai khabron aur sarkari schemes se ba-khabar rahein."
   },
   "map": {
     "title": "Pakistan Zarai Naqsha", "description": "Saadi zarai maloomat dekhne ke liye soobay par click karein.", "cropFilter": "Fasal muntakhib karein", "mapHeading": "Pakistan", "tapProvince": "Maloomat ke liye soobay par click karein", "country": "Pakistan", "yourRegion": "Aap ka ilaqa", "selected": "Muntakhib", "cropsHere": "Is soobay mein ugayi janay wali faslein", "empty": "🌱 Is ilaqay ki zarai maloomat abhi tasdeeq shuda nahi.", "sourceLabel": "Maloomat ka zariya", "source": "Wazarat-e-Qaumi Ghizai Tahaffuz aur Tehqeeq", "sourceUnavailable": "Abhi dastiyab nahi", "dataLabel": "Data ka saal", "notAvailable": "Dastiyab nahi", "viewSource": "Maakhaz dekhein", "disclaimer": "ℹ️ Yeh maloomat shaya shuda zarai data par mabni hai. Yeh aam maloomat hai, fasal ki yaqini sifarish nahi.", "provinces": { "balochistan": "Balochistan", "gilgit-baltistan": "Gilgit-Baltistan", "kpk": "Khyber Pakhtunkhwa", "punjab": "Punjab", "sindh": "Sindh" }, "crops": { "all": "Tamam faslein", "wheat": "Gandum", "rice": "Chawal", "cotton": "Kapas", "maize": "Makai", "mango": "Aam" }
@@ -99,6 +102,12 @@
     "assistantTitle": "AI Farming Assistant",
     "assistantDesc": "Humare AI farming assistant se baat karein jo English, Urdu aur Roman Urdu samajhta hai. Faslon, bimariyon, kiron, khadon aur aabpashi ke baray mein amli mashwaray hasil karein.",
     "aboutTitle": "Is Project Ke Baray Mein",
+    "newsTitle": "Zarai Khabrein Aur Updates",
+    "newsDesc": "Apne soobay ke liye taza tareen zarai khabron aur sarkari schemes se ba-khabar rahein.",
+    "newsCategoryNews": "Khabar",
+    "newsCategoryScheme": "Scheme",
+    "newsEmpty": "Is soobay ke liye filhal koi khabar ya update dastiyab nahi hai.",
+    "newsLoadError": "Khabrein load nahi ho sakin. Barah-e-karam baad mein dobara koshish karein.",
     "modelPrediction": "AI Nateeja", "confidence": "AI Yaqeen", "alternatives": "Deegar Mumkina Nataij", "analyzing": "Tajziya jari hai...", "getPrediction": "AI Nateeja Hasil Karein", "selectedPlant": "Muntakhib poda", "analyzeImage": "Tasveer ka tajziya karein", "remove": "Hatayein", "topPredictions": "Deegar Mumkina Nataij", "imageRequired": "Pehle tasveer muntakhib karein.", "invalidImage": "JPEG, PNG ya WEBP tasveer 5 MB tak muntakhib karein.", "detectionUnavailable": "Abhi tasveer ka tajziya karne se qasir hain. Baraye meharbani dobara koshish karein.", "treatmentUnverified": "Is peshgoi ka ilaj abhi tasdeeq shuda nahi. Maqami zaraati mahir se mashwara karein.", "lowConfidence": "Tasveer ki pehchan yaqini tor par nahi ho saki. Ek aur wazeh patte ki tasveer lein ya maqami zarai mahir se mashwara karein.", "uncertainTitle": "Tasveer ko dobara dekhna zaroori hai", "uncertainImage": "Hum is poday ki tasveer ko yaqini tor par nahi pehchan sake. Mutasir patte ki wazeh tasveer upload karein.", "generalAiObservation": "AI ka umoomi mushahida", "notVerifiedDiagnosis": "Tasdeeq shuda tashkhees nahi", "consultAgricultureOfficer": "Tasdeeq ke liye maqami zaraati afsar se mashwara karein.", "inconclusive": "Qatai nateeja nahi", "imageCouldNotBeIdentifiedReliably": "Tasveer ki pehchan yaqini tor par nahi ho saki", "tryAnotherClearPhoto": "Ek aur wazeh tasveer lein"
   },
   "weather": {
@@ -145,7 +154,12 @@
     "error": "Jawab hasil nahi ho saka. Dobara koshish karein.",
     "welcomeMessage": "Assalam o Alaikum! Main aap ka Smart Farming AI Assistant hoon. Pakistan mein zaraat, faslon, kiron, khadon ya aabpashi ke baray mein mujh se kuch bhi poochein.",
     "clearChat": "Nayi Baat Cheet",
-    "disclaimer": "AI se tayar shuda rahnumai. Makhsoos mashwaray ke liye hamesha maqami zarai mahireen se mashwara karein."
+    "disclaimer": "AI se tayar shuda rahnumai. Makhsoos mashwaray ke liye hamesha maqami zarai mahireen se mashwara karein.",
+    "recording": "Recording ho rahi hai...",
+    "transcribing": "Transcribe ho raha hai...",
+    "micPermissionDenied": "Microphone ki ijazat nahi di gayi. Barah-e-karam browser settings mein enable karein ya apna sawal type karein.",
+    "transcriptionFailed": "Awaaz ko text mein tabdeel nahi kiya ja saka. Dobara koshish karein.",
+    "voiceNotSupported": "Is browser mein awaaz ki support nahi hai."
   },
   "common": {
     "loading": "Load ho raha hai...",

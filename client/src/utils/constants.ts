@@ -7,6 +7,7 @@ export const NAV_ITEMS = [
   { label: 'nav.weedManagement', path: '/weeds', icon: 'Leaf' },
   { label: 'nav.aiAssistant', path: '/assistant', icon: 'MessageCircle' },
   { label: 'nav.agricultureMap', path: '/map', icon: 'Map' },
+  { label: 'nav.newsUpdates', path: '/news', icon: 'Newspaper' },
   { label: 'nav.about', path: '/about', icon: 'Info' },
 ] as const;
 

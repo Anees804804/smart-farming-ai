@@ -1,4 +1,5 @@
 import axios from 'axios';
+import FormData from 'form-data';
 import { randomUUID } from 'crypto';
 import { env } from '../config/env';
 import { logger } from '../utils/logger';
@@ -39,6 +40,7 @@ function cleanObservation(observation: string): string {
 }
 
 const GROQ_BASE_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_AUDIO_URL = 'https://api.groq.com/openai/v1/audio/transcriptions';
 
 const SYSTEM_PROMPT = `You are Smart Farming AI Assistant — a helpful, friendly agricultural assistant focused on Pakistan's farming context.
 
@@ -233,4 +235,60 @@ export async function chat(request: ChatRequest): Promise<ChatResponse> {
 
 export function isGroqConfigured(): boolean {
   return !!env.groqApiKey && env.groqApiKey.length > 0;
+}
+
+const AUDIO_MIME_MAP: Record<string, string> = {
+  'audio/mpeg': 'mp3',
+  'audio/mp3': 'mp3',
+  'audio/wav': 'wav',
+  'audio/wave': 'wav',
+  'audio/ogg': 'ogg',
+  'audio/webm': 'webm',
+  'audio/flac': 'flac',
+  'audio/mp4': 'mp4',
+  'audio/m4a': 'm4a',
+  'audio/x-m4a': 'm4a',
+  'audio/aac': 'mp4',
+  'audio/x-caf': 'caf',
+};
+
+function audioExtension(mimetype: string): string {
+  return AUDIO_MIME_MAP[mimetype] || 'wav';
+}
+
+export async function transcribeAudio(file: { buffer: Buffer; mimetype: string; originalname?: string }): Promise<string> {
+  if (!isGroqConfigured()) {
+    throw new Error('Groq API key is not configured');
+  }
+
+  const form = new FormData();
+  const ext = audioExtension(file.mimetype);
+  const filename = `audio.${ext}`;
+  form.append('file', file.buffer, { filename, contentType: file.mimetype });
+  form.append('model', process.env.GROQ_WHISPER_MODEL || 'whisper-large-v3');
+  form.append('language', 'ur');
+  form.append('response_format', 'json');
+  form.append('temperature', '0');
+
+  try {
+    const response = await axios.post(GROQ_AUDIO_URL, form, {
+      headers: {
+        ...form.getHeaders(),
+        Authorization: `Bearer ${env.groqApiKey}`,
+      },
+      timeout: 60000,
+      maxContentLength: 10 * 1024 * 1024,
+    });
+
+    const text = response.data?.text;
+    if (typeof text !== 'string' || !text.trim()) {
+      throw new Error('Empty transcription response');
+    }
+    return text.trim();
+  } catch (error: any) {
+    const status = error.response?.status;
+    const detail = error.response?.data?.error?.message || error.message;
+    logger.error('Groq audio transcription failed', { error: detail, status });
+    throw new Error(`Transcription failed: ${detail}`);
+  }
 }

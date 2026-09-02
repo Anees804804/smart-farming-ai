@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { DiseaseDetectionResponse, FarmerRatesResponse, MandiPricesResponse } from '../types';
+import type { DiseaseDetectionResponse, FarmerRatesResponse, MandiPricesResponse, NewsResponse } from '../types';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || '/api',
@@ -76,4 +76,19 @@ export async function submitFarmerRate(payload: FarmerRatePayload): Promise<Farm
     return { status: 'duplicate' };
   }
   return { status: 'created' };
+}
+
+export async function transcribeAudio(audioBlob: Blob): Promise<{ text: string }> {
+  const formData = new FormData();
+  formData.append('audio', audioBlob, 'recording.webm');
+  const response = await api.post('/assistant/transcribe', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: 60000,
+  });
+  return response.data;
+}
+
+export async function getNews(province: string) {
+  const response = await api.get<NewsResponse>('/news', { params: { province } });
+  return response.data;
 }

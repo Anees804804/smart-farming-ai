@@ -11,6 +11,7 @@ import {
   Languages,
   Layers,
   MapPin,
+  Newspaper,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import StatCard from '../components/shared/StatCard';
@@ -18,7 +19,7 @@ import FeatureCard from '../components/shared/FeatureCard';
 import WeatherCard from '../components/shared/WeatherCard';
 
 const stats = [
-  { icon: <Cpu size={20} />, valueKey: '6', labelKey: 'dashboard.statFeatures' },
+  { icon: <Cpu size={20} />, valueKey: '7', labelKey: 'dashboard.statFeatures' },
   { icon: <Languages size={20} />, valueKey: '3', labelKey: 'dashboard.statLanguages' },
   { icon: <Layers size={20} />, valueKey: '5', labelKey: 'dashboard.statModules' },
   { icon: <MapPin size={20} />, valueKey: '1', labelKey: 'dashboard.statFocus' },
@@ -31,6 +32,7 @@ const features = [
   { icon: <MessageCircle size={24} />, titleKey: 'features.assistantTitle', descKey: 'features.assistantDesc', path: '/assistant' },
   { icon: <Cloud size={24} />, titleKey: 'features.weatherTitle', descKey: 'features.weatherDesc', path: '/' },
   { icon: <Map size={24} />, titleKey: 'features.mapTitle', descKey: 'features.mapDesc', path: '/map' },
+  { icon: <Newspaper size={24} />, titleKey: 'features.newsTitle', descKey: 'features.newsDesc', path: '/news' },
 ];
 
 export default function Dashboard() {

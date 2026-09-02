@@ -47,3 +47,16 @@ coverage/
 
 # Docker
 .docker/
+
+# Test screenshots & diagnostic scripts
+test/
+client/test-screenshots/
+
+# Test data files
+data/
+
+# ML service model files (service-level)
+ml-service/model_files/
+
+# Stray root-level images
+/*.png

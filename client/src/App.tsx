@@ -7,6 +7,7 @@ import WeedManagement from './pages/WeedManagement';
 import AiAssistant from './pages/AiAssistant';
 import About from './pages/About';
 import AgricultureMap from './pages/AgricultureMap';
+import NewsUpdates from './pages/NewsUpdates';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/weeds" element={<WeedManagement />} />
         <Route path="/assistant" element={<AiAssistant />} />
         <Route path="/map" element={<AgricultureMap />} />
+        <Route path="/news" element={<NewsUpdates />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </Layout>
