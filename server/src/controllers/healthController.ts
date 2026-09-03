@@ -6,6 +6,10 @@ import { isGroqConfigured } from '../services/groqService';
 import { isWeatherConfigured } from '../services/weatherService';
 
 export async function getHealth(_req: Request, res: Response): Promise<void> {
+  res.status(200).json({ status: 'ok' });
+}
+
+export async function getReady(_req: Request, res: Response): Promise<void> {
   // Check MongoDB status
   let mongoStatus: 'connected' | 'unavailable' = 'unavailable';
   try {

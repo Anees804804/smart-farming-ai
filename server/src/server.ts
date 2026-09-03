@@ -30,10 +30,6 @@ async function start() {
     clientUrl: env.clientUrl || 'not configured',
   });
 
-  logger.info('Startup: attempting MongoDB connection');
-  await connectDB();
-  logger.info('Startup: MongoDB connection step complete');
-
   const server = app.listen(PORT, '0.0.0.0', () => {
     logger.info('Startup: server listening', {
       host: '0.0.0.0',
@@ -51,6 +47,10 @@ async function start() {
     });
     process.exit(1);
   });
+
+  logger.info('Startup: attempting MongoDB connection');
+  connectDB().catch((err) => logger.error(err));
+  logger.info('Startup: MongoDB connection step complete');
 }
 
 start().catch((error: unknown) => {
