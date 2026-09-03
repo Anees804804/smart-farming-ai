@@ -347,7 +347,7 @@ export default function AiAssistant() {
         )}
 
         {/* Input */}
-        <div className="border-t border-gray-200 p-3 bg-white">
+        <div className="w-full min-w-0 border-t border-gray-200 bg-white p-3">
           {/* Recording waveform */}
           {isRecording && (
             <div className="flex flex-col items-center gap-1 mb-2">
@@ -355,7 +355,7 @@ export default function AiAssistant() {
                 ref={canvasRef}
                 width={288}
                 height={48}
-                className="w-72 h-12"
+                className="h-12 w-full max-w-72"
               />
               <span className="text-xs text-red-600 font-medium">{t('chat.recording')}</span>
             </div>
@@ -371,7 +371,7 @@ export default function AiAssistant() {
               <span className="text-xs text-farm-600 font-medium">{t('chat.transcribing')}</span>
             </div>
           )}
-          <div className="flex gap-2">
+          <div className="flex min-w-0 flex-col gap-2 sm:flex-row">
             <input
               type="text"
               value={input}
@@ -379,28 +379,30 @@ export default function AiAssistant() {
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
               placeholder={t('chat.placeholder')}
               disabled={loading || isTranscribing}
-              className="flex-1 rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-farm-400 disabled:opacity-50"
+              className="min-w-0 w-full flex-1 rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-farm-400 disabled:opacity-50"
             />
-            {/* Mic / Stop button */}
-            <button
-              onClick={toggleRecording}
-              disabled={loading || isTranscribing}
-              aria-label={isRecording ? t('chat.recording') : 'Voice input'}
-              className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 ${
-                isRecording
-                  ? 'bg-red-500 text-white hover:bg-red-600'
-                  : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
-              }`}
-            >
-              {isRecording ? <StopCircle size={16} /> : <Mic size={16} />}
-            </button>
-            <button
-              onClick={sendMessage}
-              disabled={loading || isTranscribing || !input.trim()}
-              className="btn-primary !py-2.5 !px-4 !text-sm disabled:opacity-50"
-            >
-              <Send size={16} />
-            </button>
+            <div className="flex w-full gap-2 sm:w-auto">
+              {/* Mic / Stop button */}
+              <button
+                onClick={toggleRecording}
+                disabled={loading || isTranscribing}
+                aria-label={isRecording ? t('chat.recording') : 'Voice input'}
+                className={`flex flex-1 items-center justify-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 sm:flex-none ${
+                  isRecording
+                    ? 'bg-red-500 text-white hover:bg-red-600'
+                    : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
+                }`}
+              >
+                {isRecording ? <StopCircle size={16} /> : <Mic size={16} />}
+              </button>
+              <button
+                onClick={sendMessage}
+                disabled={loading || isTranscribing || !input.trim()}
+                className="btn-primary flex-1 !px-4 !py-2.5 !text-sm disabled:opacity-50 sm:flex-none"
+              >
+                <Send size={16} />
+              </button>
+            </div>
           </div>
           <p className="text-[10px] text-gray-400 mt-2 text-center">
             {t('chat.disclaimer')}
