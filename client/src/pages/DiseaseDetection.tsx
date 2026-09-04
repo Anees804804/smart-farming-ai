@@ -69,6 +69,7 @@ export default function DiseaseDetection() {
           </label>
           {preview && <img src={preview} alt={t('pages.selectedPlant')} className="max-h-72 w-full rounded-lg object-contain bg-gray-50" />}
             <div className="flex flex-col sm:flex-row gap-3"><button type="submit" disabled={loading || !file} className="rounded-lg bg-farm-600 px-4 py-3 sm:py-2 font-semibold text-white disabled:opacity-60">{loading ? t('pages.analyzing') : t('pages.analyzeImage')}</button>{file && <button type="button" onClick={() => { setFile(null); setResult(null); if (preview) URL.revokeObjectURL(preview); setPreview(null); }} className="rounded-lg border border-gray-300 px-4 py-3 sm:py-2">{t('pages.remove')}</button>}</div>
+          {loading && <p className="text-sm text-gray-600">{t('pages.analyzingMessage')}</p>}
         </form>
         {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
         {fallbackObservation && <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-5 text-amber-950"><p className="font-semibold">{t('pages.generalAiObservation')} — {t('pages.notVerifiedDiagnosis')}</p><p className="mt-2 text-sm leading-6">{fallbackObservation}</p><p className="mt-3 text-sm leading-6">{t('pages.inconclusive')}: {t('pages.imageCouldNotBeIdentifiedReliably')}</p><p className="mt-2 text-sm leading-6">{t('pages.tryAnotherClearPhoto')}</p><p className="mt-4 text-sm font-medium">{t('pages.consultAgricultureOfficer')}</p></div>}
