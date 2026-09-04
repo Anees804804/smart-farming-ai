@@ -58,7 +58,7 @@ export async function detectDisease(file: Express.Multer.File): Promise<DiseaseD
   const form = new FormData();
   form.append('image', file.buffer, { filename: 'upload', contentType: file.mimetype, knownLength: file.size });
   try {
-    const response = await axios.post<MlResponse<DiseasePrediction>>(`${env.mlServiceUrl}/predict/disease`, form, { timeout: 30000, headers: form.getHeaders() });
+    const response = await axios.post<MlResponse<DiseasePrediction>>(`${env.mlServiceUrl}/predict/disease`, form, { timeout: 60000, headers: form.getHeaders() });
     const body = response.data;
     return { status: body.status, data: requireData(body.data), message: body.message };
   } catch (error) {
